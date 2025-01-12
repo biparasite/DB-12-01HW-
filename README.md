@@ -22,7 +22,7 @@
 ```PostgreSQL
 -- Офисы
 create table branches(
-    id int primary key,
+    id bigserial primary key,
     address_branche  varchar(255) not null unique
 );
 ```
@@ -51,9 +51,7 @@ create table units_type(
 -- Должность
 create table job_title(
     id int primary key,
-    name_job_title varchar(128) not null,
-    name_title int,
-    foreign key(name_title) references units_type (id)
+    name_job_title varchar(128) not null
 );
 ```
 
@@ -93,7 +91,9 @@ create table person (
     job int,
     foreign key(job) references job_title (id),
     project_name int,
-    foreign key(project_name) references projects (id)
+    foreign key(project_name) references projects (id),
+    unit int,
+    foreign key(unit) references units_type (id)
 );
 ```
 
